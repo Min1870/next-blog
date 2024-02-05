@@ -6,9 +6,9 @@ interface PostProps {
   id: number;
   title: string;
   body: string;
-  img: string;
-  slug: string;
-  createdAt: string;
+  img?: string;
+  slug?: string;
+  createdAt?: string;
 }
 
 interface PostCardProps {

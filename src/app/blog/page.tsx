@@ -3,14 +3,16 @@ import { getPosts } from "@/lib/data";
 import React from "react";
 
 // FETCH DATA WITH AN API
-// const getData = async () => {
-//   // By default next js cache the data , if you don't want cache the data {cache: "no-store"}
-//   const res = await fetch("https://jsonplaceholder.typicode.com/posts", {cache: "no-store"});
-//   if (!res.ok) {
-//     throw new Error("Something went wrong!");
-//   }
-//   return res.json();
-// };
+const getData = async () => {
+  // By default next js cache the data , if you don't want cache the data {cache: "no-store"}
+  const res = await fetch("http://localhost:3000/api/blog", {
+    cache: "no-store",
+  });
+  if (!res.ok) {
+    throw new Error("Something went wrong!");
+  }
+  return res.json();
+};
 
 interface PostProps {
   userId: number;
@@ -21,10 +23,10 @@ interface PostProps {
 
 const BlogPage = async () => {
   // FETCH DATA WITH AN API
-  // const posts = await getData();
+  const posts = await getData();
 
   // FETCH DATA WITHOUT AN API
-  const posts = await getPosts();
+  // const posts = await getPosts();
   return (
     <div className="flex flex-wrap gap-[20px]">
       {posts.map((post: PostProps) => (

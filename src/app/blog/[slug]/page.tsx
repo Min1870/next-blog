@@ -4,14 +4,14 @@ import Image from "next/image";
 import { Suspense } from "react";
 
 // FETCH DATA WITH AN API
-// const getData = async (slug: string) => {
-//   // By default next js cache the data , if you don't want cache the data {cache: "no-store"}
-//   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`);
-//   if (!res.ok) {
-//     throw new Error("Something went wrong!");
-//   }
-//   return res.json();
-// };
+const getData = async (slug: string) => {
+  // By default next js cache the data , if you don't want cache the data {cache: "no-store"}
+  const res = await fetch(`http://localhost:3000/api/blog/${slug}`);
+  if (!res.ok) {
+    throw new Error("Something went wrong!");
+  }
+  return res.json();
+};
 
 export const generateMetadata = async ({ params }: SinglePostProps) => {
   const post: Post = await getPost(params.slug);
@@ -36,11 +36,11 @@ interface Post {
 
 const SinglePostPage = async ({ params }: SinglePostProps) => {
   // FETCH DATA WITH AN API
-  // const { slug } = params;
-  // const post = await getData(params.slug);
+  const { slug } = params;
+  const post = await getData(slug);
 
   // FETCH DATA WITHOUT AN API
-  const post: Post = await getPost(params.slug);
+  // const post: Post = await getPost(params.slug);
 
   return (
     <div className="flex gap-[100px]">
