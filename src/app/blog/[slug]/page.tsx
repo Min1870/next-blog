@@ -13,6 +13,15 @@ import { Suspense } from "react";
 //   return res.json();
 // };
 
+export const generateMetadata = async ({ params }: SinglePostProps) => {
+  const post: Post = await getPost(params.slug);
+
+  return {
+    title: post.title,
+    description: post.desc,
+  };
+};
+
 interface SinglePostProps {
   params: {
     slug: string;

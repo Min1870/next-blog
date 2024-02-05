@@ -8,6 +8,7 @@ interface PostProps {
   body: string;
   img: string;
   slug: string;
+  createdAt: string;
 }
 
 interface PostCardProps {
@@ -24,7 +25,9 @@ const PostCard = ({ post }: PostCardProps) => {
           </div>
         )}
 
-        <span className="text-xs rotate-90 m-auto ">01.2.2024</span>
+        <span className="text-xs rotate-90 m-auto ">
+          {post.createdAt?.toString().slice(4, 16)}
+        </span>
       </div>
       <div className="">
         <h1 className="w-[90%] mb-[20px] text-2xl">{post.title}</h1>
