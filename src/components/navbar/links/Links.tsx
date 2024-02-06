@@ -1,10 +1,11 @@
 "use client";
-import Link from "next/link";
 import React, { useState } from "react";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
-import ThemeSwitch from "@/components/ThemeSwitch";
 import Image from "next/image";
+import NavLink from "./navlinks/NavLinks";
+import { handleLogout } from "@/lib/action";
+import { auth } from "@/lib/auth";
 
 const links = [
   {
@@ -25,29 +26,48 @@ const links = [
   },
 ];
 
-const Links = () => {
+interface User {
+  name?: string | null | undefined;
+  email?: string | null | undefined;
+  image?: string | null | undefined;
+  isAdmin?: boolean | null | undefined;
+}
+
+interface Session {
+  user?: User;
+  expires: string;
+}
+
+interface SessionProps {
+  session: Session | null;
+}
+
+const Links = ({ session }: SessionProps) => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
+  const isAdmin = true;
   return (
-    <div className="">
-      <div className="md:flex hidden items-center gap-[10px]">
+    <div>
+      <div className="hidden md:flex items-center gap-[10px]">
         {links.map((link) => (
-          <Link
-            href={link.path}
-            key={link.title}
-            className={clsx(
-              "min-w-[100px] p-[10px] rounded-[20px] font-semibold text-center",
-              {
-                "bg-white text-[#0d0c22]": pathname === link.path,
-              }
-            )}
-          >
-            {link.title}
-          </Link>
+          <NavLink item={link} key={link.title} />
         ))}
+        {session?.user ? (
+          <>
+            {session?.user?.isAdmin && (
+              <NavLink item={{ title: "Admin", path: "/admin" }} />
+            )}
+            <form action={handleLogout}>
+              <button className="p-[10px] cursor-pointer text-black bg-white font-[500]">
+                Logout
+              </button>
+            </form>
+          </>
+        ) : (
+          <NavLink item={{ title: "Login", path: "/login" }} />
+        )}
       </div>
-      
       <Image
         className="md:hidden block cursor-pointer"
         src="/menu.png"
@@ -58,13 +78,9 @@ const Links = () => {
       />
       {open && (
         <div className="absolute top-20 right-0 w-1/2 h-[calc(100vh-100px)] bg-var(--bg) flex flex-col items-center justify-center gap-4 md:hidden">
-          {links.map((link) => {
-            return (
-              <Link href={link.path} key={link.title}>
-                {link.title}
-              </Link>
-            );
-          })}
+          {links.map((link) => (
+            <NavLink item={link} key={link.title} />
+          ))}
         </div>
       )}
     </div>
