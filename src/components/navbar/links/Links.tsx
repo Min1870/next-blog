@@ -1,11 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import { usePathname } from "next/navigation";
-import clsx from "clsx";
 import Image from "next/image";
 import NavLink from "./navlinks/NavLinks";
 import { handleLogout } from "@/lib/action";
-import { auth } from "@/lib/auth";
 
 const links = [
   {
@@ -44,7 +41,6 @@ interface SessionProps {
 
 const Links = ({ session }: SessionProps) => {
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
 
   const isAdmin = true;
   return (

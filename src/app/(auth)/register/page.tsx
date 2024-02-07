@@ -1,7 +1,14 @@
-import React from "react";
+import RegisterForm from "@/components/registerForm/page";
+import { register } from "@/lib/action";
 
-const page = () => {
-  return <div>page</div>;
+const RegisterPage = () => {
+  return (
+    <div className="flex items-center justify-center">
+      <div className="w-[500px] bg-[--bgSoft] p-[50px] flex flex-col text-center gap-[30px] rounded-[5px]">
+        <RegisterForm />
+      </div>
+    </div>
+  );
 };
 
-export default page;
+export default RegisterPage;

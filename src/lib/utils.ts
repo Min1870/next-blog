@@ -17,8 +17,8 @@ export const connectToDb = async () => {
       );
     }
     const options = {
-      serverSelectionTimeoutMS: 30000, // 30 seconds
-      socketTimeoutMS: 45000, // 45 seconds
+      serverSelectionTimeoutMS: 30000,
+      socketTimeoutMS: 45000,
       useNewUrlParser: true,
       useUnifiedTopology: true,
     };
