@@ -1,5 +1,4 @@
 import RegisterForm from "@/components/registerForm/page";
-import { register } from "@/lib/action";
 
 const RegisterPage = () => {
   return (

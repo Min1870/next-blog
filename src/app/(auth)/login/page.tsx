@@ -1,16 +1,17 @@
-import { handleGithubLogin, login } from "@/lib/action";
+import LoginForm from "@/components/loginForm/page";
+import { handleGithubLogin } from "@/lib/action";
+import { auth } from "@/lib/auth";
+import { useRouter } from "next/navigation";
 
-const LoginPage = async () => {
+const LoginPage = () => {
   return (
-    <div>
-      <form action={handleGithubLogin}>
-        <button>Login with Github</button>
-      </form>
-      <form action={login}>
-        <input type="text" placeholder="username" name="username" />
-        <input type="password" placeholder="password" name="password" />
-        <button>Login</button>
-      </form>
+    <div className="flex items-center justify-center">
+      <div className="w-[500px] bg-[--bgSoft] p-[50px] flex flex-col text-center gap-[30px] rounded-[5px]">
+        <form action={handleGithubLogin}>
+          <button>Login with Github</button>
+        </form>
+        <LoginForm />
+      </div>
     </div>
   );
 };
