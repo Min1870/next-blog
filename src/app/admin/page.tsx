@@ -7,7 +7,7 @@ import AdminUserForm from "@/components/adminUserForm/AdminUserForm";
 import { auth } from "@/lib/auth";
 
 const AdminPage = async () => {
-  const session = await auth();
+  const session: any = await auth();
 
   return (
     <div className="mt-[50px] flex flex-col gap-[100px]">
