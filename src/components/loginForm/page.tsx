@@ -2,17 +2,12 @@
 import { login } from "@/lib/action";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
 import { useFormState } from "react-dom";
 
 const LoginForm = () => {
   const [state, formAction] = useFormState(login, undefined);
 
   const router = useRouter();
-
-  //   useEffect(() => {
-  //     state?.success && router.push("/login");
-  //   }, [state?.success, router]);
 
   return (
     <form className="flex flex-col items-center gap-[30px]" action={formAction}>
